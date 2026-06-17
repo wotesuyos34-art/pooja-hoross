@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Pooja Horos – Daily Horoscope | Zodiac Star Readings</title>
+  <meta name="description" content="Read your free daily horoscope on Pooja Horos. Choose your zodiac sign for today’s love, career, wellness, luck, lucky color, numbers, and best time.">
+  <meta name="keywords" content="daily horoscope, horoscope today, zodiac signs, astrology reading, free horoscope, pooja horos">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://poojahoros.com/">
+  <meta property="og:title" content="Pooja Horos – Free Daily Horoscope">
+  <meta property="og:description" content="Choose your zodiac sign and reveal today’s fresh star reading for love, career, wellness and luck.">
+  <meta property="og:url" content="https://poojahoros.com/">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#070714">
+  <style>
+    :root{
+      --bg:#070714;
+      --bg2:#101027;
+      --panel:rgba(17,18,45,.72);
+      --panel-soft:rgba(255,255,255,.055);
+      --line:rgba(255,255,255,.13);
+      --text:#f4f0ff;
+      --muted:#b7aed7;
+      --soft:#8f86b5;
+      --pink:#ff8bd4;
+      --violet:#9a77ff;
+      --cyan:#83e8ff;
+      --gold:#ffd36e;
+      --green:#73ffb5;
+      --radius-xl:30px;
+      --radius-lg:22px;
+      --radius-md:16px;
+      --safe-bottom:env(safe-area-inset-bottom, 18px);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{
+      min-height:100vh;
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Inter,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(154,119,255,.34), transparent 32%),
+        radial-gradient(circle at 88% 16%, rgba(131,232,255,.18), transparent 28%),
+        radial-gradient(circle at 50% 100%, rgba(255,139,212,.18), transparent 35%),
+        linear-gradient(180deg,#05050f 0%,#0b0b1d 42%,#05050f 100%);
+      overflow-x:hidden;
+      line-height:1.55;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    body:before,body:after{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+    }
+    body:before{
+      background-image:
+        radial-gradient(circle,rgba(255,255,255,.95) 0 1px,transparent 1.5px),
+        radial-gradient(circle,rgba(255,211,110,.7) 0 1px,transparent 1.4px),
+        radial-gradient(circle,rgba(131,232,255,.72) 0 1px,transparent 1.3px);
+      background-size:92px 92px,137px 137px,181px 181px;
+      background-position:0 0,30px 50px,70px 10px;
+      opacity:.42;
+      animation:driftStars 32s linear infinite;
+    }
+    body:after{
+      background:linear-gradient(120deg,transparent 0 35%,rgba(255,255,255,.07) 46%,transparent 55% 100%);
+      transform:translateX(-130%);
+      animation:moonSweep 11s ease-in-out infinite;
+      opacity:.28;
+    }
+    @keyframes driftStars{from{background-position:0 0,30px 50px,70px 10px}to{background-position:0 220px,30px 270px,70px 230px}}
+    @keyframes moonSweep{0%,62%{transform:translateX(-130%)}100%{transform:translateX(130%)}}
+    .page{
+      position:relative;
+      z-index:1;
+      width:min(1160px,100%);
+      margin:0 auto;
+      padding:18px 16px 0;
+    }
+    .top-pill{
+      margin:18px auto 0;
+      width:max-content;
+      max-width:100%;
+      padding:8px 16px;
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      color:#efe8ff;
+      font-size:.78rem;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      box-shadow:0 14px 40px rgba(0,0,0,.3);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+    }
+    .hero{
+      min-height:clamp(360px,58vh,560px);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:22px 4px 26px;
+    }
+    .moon-logo{
+      width:88px;
+      height:88px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      margin:0 auto 18px;
+      background:
+        radial-gradient(circle at 32% 28%,#fff8d5 0 12%,#ffe6a0 18%,#d69b40 48%,#6e4eb8 70%,#201647 100%);
+      box-shadow:0 0 34px rgba(255,211,110,.38),0 0 80px rgba(154,119,255,.22), inset -12px -10px 26px rgba(0,0,0,.3);
+      position:relative;
+    }
+    .moon-logo:after{
+      content:"✦";
+      font-size:2.4rem;
+      color:#fff;
+      text-shadow:0 0 18px rgba(255,255,255,.9);
+    }
+    h1{
+      font-size:clamp(2.45rem,9vw,5.1rem);
+      line-height:1.02;
+      letter-spacing:-.08em;
+      font-weight:950;
+      max-width:850px;
+    }
+    .shine{
+      background:linear-gradient(120deg,#fff 0%,#ffd36e 32%,#ff8bd4 64%,#83e8ff 100%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+    .hero p{
+      margin:20px auto 0;
+      max-width:620px;
+      color:var(--muted);
+      font-size:clamp(1rem,3.6vw,1.22rem);
+    }
+    .live-row{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:10px;
+      margin-top:24px;
+    }
+    .date-chip,.free-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:11px 17px;
+      border-radius:999px;
+      background:rgba(255,255,255,.075);
+      border:1px solid rgba(255,255,255,.15);
+      color:#eee9ff;
+      font-size:.94rem;
+      font-weight:700;
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+    }
+    .pulse{
+      width:9px;height:9px;border-radius:99px;background:var(--green);
+      box-shadow:0 0 0 0 rgba(115,255,181,.7);
+      animation:pulse 1.8s infinite;
+    }
+    @keyframes pulse{70%{box-shadow:0 0 0 12px rgba(115,255,181,0)}100%{box-shadow:0 0 0 0 rgba(115,255,181,0)}}
+    .section-head{text-align:center;margin:6px 0 22px}
+    .section-head h2{font-size:clamp(1.6rem,5vw,2.45rem);letter-spacing:-.04em;line-height:1.1}
+    .section-head p{color:var(--soft);margin-top:8px;font-size:.98rem}
+    .zodiac-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      padding-bottom:42px;
+    }
+    @media(min-width:520px){.zodiac-grid{grid-template-columns:repeat(3,1fr)}}
+    @media(min-width:820px){.zodiac-grid{grid-template-columns:repeat(6,1fr);gap:14px}}
+    .zodiac-card{
+      border:1px solid var(--line);
+      border-radius:var(--radius-lg);
+      background:
+        linear-gradient(180deg,rgba(255,255,255,.085),rgba(255,255,255,.035)),
+        rgba(17,18,45,.68);
+      min-height:144px;
+      padding:16px 10px 14px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      cursor:pointer;
+      user-select:none;
+      -webkit-tap-highlight-color:transparent;
+      box-shadow:0 16px 40px rgba(0,0,0,.28);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease,background .22s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .zodiac-card:before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:radial-gradient(circle at 50% 0%,rgba(255,211,110,.25),transparent 45%);
+      opacity:.55;
+      pointer-events:none;
+    }
+    .zodiac-card:active{transform:scale(.97)}
+    @media(hover:hover){.zodiac-card:hover{transform:translateY(-6px);border-color:rgba(255,211,110,.46);box-shadow:0 22px 50px rgba(0,0,0,.4),0 0 26px rgba(154,119,255,.22)}}
+    .zodiac-icon{font-size:2.8rem;line-height:1;margin-bottom:10px;text-shadow:0 0 20px rgba(255,211,110,.42);position:relative;z-index:1}
+    .zodiac-name{font-size:1.02rem;font-weight:900;color:#fff;position:relative;z-index:1}
+    .zodiac-dates{font-size:.72rem;color:var(--soft);font-weight:700;position:relative;z-index:1;margin-top:3px}
+    .modal-overlay{
+      position:fixed;
+      inset:0;
+      z-index:50;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      background:rgba(0,0,0,.72);
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .25s ease;
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+    }
+    .modal-overlay.active{opacity:1;pointer-events:auto}
+    .modal{
+      width:min(570px,100%);
+      max-height:88vh;
+      overflow:auto;
+      border-radius:var(--radius-xl);
+      border:1px solid rgba(255,255,255,.16);
+      background:
+        radial-gradient(circle at 20% 0%,rgba(255,139,212,.18),transparent 38%),
+        radial-gradient(circle at 90% 15%,rgba(131,232,255,.14),transparent 38%),
+        linear-gradient(180deg,#171738,#090914);
+      box-shadow:0 28px 80px rgba(0,0,0,.7),0 0 50px rgba(154,119,255,.18);
+      padding:26px 18px 20px;
+      position:relative;
+      animation:pop .25s ease-out;
+    }
+    @keyframes pop{from{transform:translateY(24px) scale(.96);opacity:.5}to{transform:none;opacity:1}}
+    .modal-close{
+      position:absolute;
+      top:12px;right:12px;
+      width:38px;height:38px;border:0;border-radius:50%;
+      background:rgba(255,255,255,.09);color:#fff;font-size:1.2rem;cursor:pointer;
+    }
+    .modal-icon{text-align:center;font-size:4.2rem;line-height:1;margin-top:5px;text-shadow:0 0 24px rgba(255,211,110,.45)}
+    .modal-name{text-align:center;font-size:2rem;font-weight:950;letter-spacing:-.04em;color:#fff;margin-top:4px}
+    .modal-dates{text-align:center;color:var(--soft);font-weight:700;font-size:.85rem}
+    .modal-date{text-align:center;margin:14px 0 16px}
+    .modal-date span{display:inline-block;padding:7px 14px;border:1px solid rgba(255,211,110,.25);border-radius:999px;background:rgba(255,211,110,.09);color:#ffdf90;font-weight:800;font-size:.78rem}
+    .reading{
+      background:rgba(255,255,255,.055);
+      border:1px solid rgba(255,255,255,.09);
+      border-left:4px solid var(--gold);
+      border-radius:18px;
+      padding:16px;
+      color:#e9e3ff;
+      font-size:1.02rem;
+      margin-bottom:12px;
+    }
+    .aspect-grid{display:grid;grid-template-columns:1fr;gap:10px}
+    @media(min-width:480px){.aspect-grid{grid-template-columns:1fr 1fr}}
+    .aspect{padding:12px;border-radius:16px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.045);font-size:.84rem;color:#eee9ff}
+    .aspect strong{display:block;margin-bottom:4px;color:#fff}
+    .lucky-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
+    .lucky-row span{font-size:.78rem;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);border-radius:999px;padding:7px 10px;color:#ddd5ff}
+    .footer{
+      margin-top:8px;
+      padding:26px 12px calc(28px + var(--safe-bottom));
+      text-align:center;
+      border-top:1px solid rgba(255,255,255,.11);
+      background:rgba(4,4,12,.38);
+    }
+    .footer .notice{max-width:850px;margin:0 auto 16px;color:#aaa0c9;font-size:.78rem}
+    .footer .notice p{margin-bottom:6px}
+    .footer-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+    .footer-links button{
+      appearance:none;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:#ffdf90;
+      border-radius:999px;
+      padding:9px 13px;
+      font-family:inherit;
+      font-weight:850;
+      font-size:.78rem;
+      cursor:pointer;
+    }
+    .legal-box{
+      display:none;
+      width:min(780px,100%);
+      margin:16px auto 0;
+      text-align:left;
+      background:rgba(255,255,255,.055);
+      border:1px solid rgba(255,255,255,.11);
+      border-radius:20px;
+      padding:18px;
+      color:#d7d0f1;
+      font-size:.84rem;
+    }
+    .legal-box.active{display:block}
+    .legal-box h3{color:#ffdf90;margin:8px 0 8px;font-size:1.05rem}
+    .legal-box p,.legal-box li{margin-bottom:8px}
+    .legal-box ul{padding-left:18px}
+    .legal-box a{color:#83e8ff}
+    .contact-form{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+    .contact-form input,.contact-form textarea{
+      width:100%;
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:14px;
+      background:rgba(0,0,0,.2);
+      color:#fff;
+      padding:13px;
+      font:inherit;
+    }
+    .contact-form textarea{min-height:96px;resize:vertical}
+    .contact-form button,.close-section{
+      border:0;
+      border-radius:999px;
+      padding:13px 16px;
+      cursor:pointer;
+      font-family:inherit;
+      font-weight:900;
+    }
+    .contact-form button{background:linear-gradient(120deg,#ffd36e,#ff8bd4);color:#150b1c}
+    .close-section{display:block;margin:12px auto 0;background:rgba(255,255,255,.08);color:#fff}
+    .copyright{font-size:.72rem;color:#81799f;margin-top:13px}
+    #toast{
+      position:fixed;left:50%;bottom:calc(18px + var(--safe-bottom));transform:translateX(-50%) translateY(120px);
+      z-index:80;background:#171738;border:1px solid rgba(255,211,110,.35);color:#fff;border-radius:999px;padding:12px 18px;font-weight:850;box-shadow:0 12px 36px rgba(0,0,0,.5);transition:transform .32s ease;text-align:center;max-width:calc(100% - 24px)
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="top-pill">Pooja Horos • Free Daily Star Reading</div>
+    <section class="hero" aria-label="Daily horoscope intro">
+      <div class="moon-logo" aria-hidden="true"></div>
+      <h1><span class="shine">Today’s Horoscope</span><br>Under the Stars</h1>
+      <p>Choose your zodiac sign and reveal a fresh daily reading for love, career, wellness, lucky color, numbers and your best time of the day.</p>
+      <div class="live-row">
+        <div class="date-chip"><span class="pulse"></span><span id="live-date">Loading today’s date...</span></div>
+        <div class="free-chip">✨ Always Free</div>
+      </div>
+    </section>
+
+    <section aria-label="Choose your zodiac sign">
+      <div class="section-head">
+        <h2>Pick Your Zodiac Sign</h2>
+        <p>Tap once to open your personal reading.</p>
+      </div>
+      <div class="zodiac-grid" id="zodiacGrid"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="notice">
+      <p><strong>Entertainment Disclaimer:</strong> Pooja Horos provides astrology-style content for entertainment and general educational purposes only.</p>
+      <p><strong>Advice Disclaimer:</strong> Horoscope readings are not medical, financial, legal, professional, or emergency advice. Please use your own judgment for important decisions.</p>
+    </div>
+    <div class="footer-links">
+      <button onclick="toggleLegal('privacy')">Privacy Policy</button>
+      <button onclick="toggleLegal('terms')">Terms</button>
+      <button onclick="toggleLegal('refund')">Refund Policy</button>
+      <button onclick="toggleLegal('contact')">Contact</button>
+    </div>
+
+    <div id="legal-privacy" class="legal-box">
+      <h3>Privacy Policy</h3>
+      <p><strong>Last Updated:</strong> June 07, 2026</p>
+      <p>Pooja Horos respects your privacy. This simple horoscope website is designed to be used without creating an account. We do not require visitors to sign in, make a payment, or submit personal information to read daily horoscope content.</p>
+      <p>If you contact us by email or by using the contact form, you may voluntarily share your name, email address, subject, and message. This information is used only to reply to your message.</p>
+      <p>For privacy questions, contact <a href="mailto:admin@poojahoros.com">admin@poojahoros.com</a>.</p>
+      <button class="close-section" onclick="closeLegal()">Close</button>
+    </div>
+
+    <div id="legal-terms" class="legal-box">
+      <h3>Terms of Service</h3>
+      <p><strong>Last Updated:</strong> June 07, 2026</p>
+      <p>By using poojahoros.com, you agree that all horoscope readings and zodiac information are provided for entertainment and general informational purposes only.</p>
+      <ul>
+        <li>Do not treat horoscope content as professional advice.</li>
+        <li>Do not misuse, copy, attack, or overload the website.</li>
+        <li>Website content may be updated, removed, or changed at any time.</li>
+        <li>Pooja Horos is not responsible for decisions made based on horoscope readings.</li>
+      </ul>
+      <button class="close-section" onclick="closeLegal()">Close</button>
+    </div>
+
+    <div id="legal-refund" class="legal-box">
+      <h3>Refund Policy</h3>
+      <p><strong>Last Updated:</strong> June 07, 2026</p>
+      <p>Pooja Horos is a free horoscope website. No payment is required to read the daily zodiac content on this page.</p>
+      <p>Because the current website does not sell paid readings, subscriptions, or digital products, there are no charges and no refunds to process. For any billing-related question, contact <a href="mailto:admin@poojahoros.com">admin@poojahoros.com</a>.</p>
+      <button class="close-section" onclick="closeLegal()">Close</button>
+    </div>
+
+    <div id="legal-contact" class="legal-box">
+      <h3>Contact Us</h3>
+      <p>Email: <a href="mailto:admin@poojahoros.com">admin@poojahoros.com</a></p>
+      <form class="contact-form" onsubmit="handleContactSubmit(event)">
+        <input type="text" id="cf-name" placeholder="Your Name *" required>
+        <input type="email" id="cf-email" placeholder="Your Email *" required>
+        <input type="text" id="cf-subject" placeholder="Subject">
+        <textarea id="cf-message" placeholder="Your Message *" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <button class="close-section" onclick="closeLegal()">Close</button>
+    </div>
+    <div class="copyright">© <span id="year">2026</span> Pooja Horos — poojahoros.com — All rights reserved.</div>
+  </footer>
+
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Daily horoscope reading">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+      <div class="modal-icon" id="modalIcon"></div>
+      <div class="modal-name" id="modalName"></div>
+      <div class="modal-dates" id="modalDates"></div>
+      <div class="modal-date"><span id="modalDate"></span></div>
+      <div class="reading" id="modalReading"></div>
+      <div class="aspect-grid">
+        <div class="aspect"><strong>💖 Love</strong><span id="modalLove"></span></div>
+        <div class="aspect"><strong>💼 Career</strong><span id="modalCareer"></span></div>
+        <div class="aspect"><strong>🌿 Wellness</strong><span id="modalHealth"></span></div>
+        <div class="aspect"><strong>🍀 Luck</strong><span id="modalLuck"></span></div>
+      </div>
+      <div class="lucky-row" id="modalLucky"></div>
+    </div>
+  </div>
+  <div id="toast">Message</div>
+
+  <script>
+    const zodiacSigns = [
+      { id:'aries', name:'Aries', icon:'♈', dates:'Mar 21 – Apr 19', element:'Fire' },
+      { id:'taurus', name:'Taurus', icon:'♉', dates:'Apr 20 – May 20', element:'Earth' },
+      { id:'gemini', name:'Gemini', icon:'♊', dates:'May 21 – Jun 20', element:'Air' },
+      { id:'cancer', name:'Cancer', icon:'♋', dates:'Jun 21 – Jul 22', element:'Water' },
+      { id:'leo', name:'Leo', icon:'♌', dates:'Jul 23 – Aug 22', element:'Fire' },
+      { id:'virgo', name:'Virgo', icon:'♍', dates:'Aug 23 – Sep 22', element:'Earth' },
+      { id:'libra', name:'Libra', icon:'♎', dates:'Sep 23 – Oct 22', element:'Air' },
+      { id:'scorpio', name:'Scorpio', icon:'♏', dates:'Oct 23 – Nov 21', element:'Water' },
+      { id:'sagittarius', name:'Sagittarius', icon:'♐', dates:'Nov 22 – Dec 21', element:'Fire' },
+      { id:'capricorn', name:'Capricorn', icon:'♑', dates:'Dec 22 – Jan 19', element:'Earth' },
+      { id:'aquarius', name:'Aquarius', icon:'♒', dates:'Jan 20 – Feb 18', element:'Air' },
+      { id:'pisces', name:'Pisces', icon:'♓', dates:'Feb 19 – Mar 20', element:'Water' }
+    ];
+
+    const readingPools = {
+      opening: [
+        'A calm wave of star energy surrounds you today, helping you slow down and notice what truly matters.',
+        'The sky brings a gentle reset, making this a good day to choose clarity over confusion.',
+        'A quiet sign may appear when you least expect it. Pay attention to timing, tone and small details.',
+        'Your inner voice is stronger today. Trust the feeling that keeps returning to your heart.',
+        'The day opens with fresh movement, especially where you have been waiting for an answer.'
+      ],
+      closing: [
+        'Move with patience and the day can unfold better than planned.',
+        'A small positive step today can become a bigger blessing later.',
+        'Let peace guide your choices and avoid rushing what needs time.',
+        'Your best result comes from staying steady, kind and observant.',
+        'The stars favor a simple choice made with a clear heart.'
+      ],
+      love: [
+        'Warm words can heal more than a long explanation. Keep your tone soft.',
+        'Someone may appreciate your attention more than you realize. Be present.',
+        'Single hearts should stay open to a natural conversation or friendly message.',
+        'Avoid overthinking old memories. Today supports emotional freshness.',
+        'A thoughtful gesture can bring closeness back into focus.'
+      ],
+      career: [
+        'A practical idea can save time. Write it down before the day gets busy.',
+        'Your focus improves when you handle one task fully instead of jumping around.',
+        'A senior, client or colleague may notice your consistency today.',
+        'Do not ignore a small work detail. It may matter more than it looks.',
+        'Learning something new can make your next step easier.'
+      ],
+      health: [
+        'Your body may ask for rest, water and lighter choices. Listen early.',
+        'A short walk, stretching or quiet breathing can refresh your mood.',
+        'Balance is the word for today. Do not push past your natural limit.',
+        'Simple routines support you more than extreme changes right now.',
+        'Good sleep and calm food choices can improve your energy.'
+      ],
+      luck: [
+        'A lucky moment may arrive through a message, call or small invitation.',
+        'Your luck improves when you say yes to the right simple opportunity.',
+        'A delay may actually protect you from the wrong timing.',
+        'Look for good fortune in a place you already know well.',
+        'Your intuition is your strongest lucky charm today.'
+      ]
+    };
+    const luckyColors = ['Moon Gold','Deep Violet','Pearl White','Rose Pink','Midnight Blue','Aqua Glow','Soft Silver','Emerald Light','Lavender','Sunset Orange'];
+    const luckyNumbers = [2,4,7,9,11,16,21,24,29,33,42,51,64,72];
+    const luckyTimes = ['8 AM – 10 AM','10 AM – 12 PM','1 PM – 3 PM','3 PM – 5 PM','6 PM – 8 PM','8 PM – 10 PM'];
+
+    function seededRandom(seed){let s=seed%2147483647;if(s<=0)s+=2147483646;return function(){s=s*16807%2147483647;return(s-1)/2147483646;}}
+    function dateSeed(signId){const now=new Date();const start=new Date(now.getFullYear(),0,0);const day=Math.floor((now-start)/86400000);const index=zodiacSigns.findIndex(s=>s.id===signId)+1;return now.getFullYear()*1000+day*31+index*17;}
+    function pick(list, rand){return list[Math.floor(rand()*list.length)]}
+
+    function generateReading(signId){
+      const rand=seededRandom(dateSeed(signId));
+      const sign=zodiacSigns.find(s=>s.id===signId);
+      const color=pick(luckyColors,rand);
+      const n1=pick(luckyNumbers,rand);
+      let n2=pick(luckyNumbers,rand);
+      if(n1===n2)n2=pick(luckyNumbers,rand);
+      const time=pick(luckyTimes,rand);
+      return {
+        sign,
+        date:new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'}),
+        reading: pick(readingPools.opening,rand)+' '+pick(readingPools.closing,rand),
+        love: pick(readingPools.love,rand),
+        career: pick(readingPools.career,rand),
+        health: pick(readingPools.health,rand),
+        luck: pick(readingPools.luck,rand),
+        color,
+        numbers:[n1,n2],
+        time
+      };
+    }
+
+    function buildGrid(){
+      const grid=document.getElementById('zodiacGrid');
+      grid.innerHTML='';
+      zodiacSigns.forEach(sign=>{
+        const card=document.createElement('button');
+        card.type='button';
+        card.className='zodiac-card';
+        card.setAttribute('aria-label',sign.name+' daily horoscope');
+        card.innerHTML='<span class="zodiac-icon">'+sign.icon+'</span><span class="zodiac-name">'+sign.name+'</span><span class="zodiac-dates">'+sign.dates+'</span>';
+        card.onclick=()=>openModal(sign.id);
+        grid.appendChild(card);
+      });
+    }
+    function openModal(signId){
+      const data=generateReading(signId);
+      document.getElementById('modalIcon').textContent=data.sign.icon;
+      document.getElementById('modalName').textContent=data.sign.name;
+      document.getElementById('modalDates').textContent=data.sign.dates+' • '+data.sign.element+' Sign';
+      document.getElementById('modalDate').textContent='Today • '+data.date;
+      document.getElementById('modalReading').textContent=data.reading;
+      document.getElementById('modalLove').textContent=data.love;
+      document.getElementById('modalCareer').textContent=data.career;
+      document.getElementById('modalHealth').textContent=data.health;
+      document.getElementById('modalLuck').textContent=data.luck;
+      document.getElementById('modalLucky').innerHTML='<span>🎨 '+data.color+'</span><span>🔢 '+data.numbers.join(', ')+'</span><span>⏰ '+data.time+'</span>';
+      document.getElementById('modalOverlay').classList.add('active');
+      document.body.style.overflow='hidden';
+    }
+    function closeModal(){document.getElementById('modalOverlay').classList.remove('active');document.body.style.overflow=''}
+    document.getElementById('modalOverlay').addEventListener('click',e=>{if(e.target.id==='modalOverlay')closeModal()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+    function updateDate(){
+      const now=new Date();
+      document.getElementById('live-date').textContent=now.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+      document.getElementById('year').textContent=now.getFullYear();
+    }
+    function toggleLegal(section){
+      ['privacy','terms','refund','contact'].forEach(id=>{
+        const box=document.getElementById('legal-'+id);
+        if(id===section)box.classList.toggle('active');else box.classList.remove('active');
+      });
+      const target=document.getElementById('legal-'+section);
+      if(target.classList.contains('active'))setTimeout(()=>target.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
+    }
+    function closeLegal(){document.querySelectorAll('.legal-box').forEach(x=>x.classList.remove('active'))}
+    function handleContactSubmit(e){
+      e.preventDefault();
+      const name=document.getElementById('cf-name').value.trim();
+      const email=document.getElementById('cf-email').value.trim();
+      const subject=document.getElementById('cf-subject').value.trim()||'Message from Pooja Horos';
+      const message=document.getElementById('cf-message').value.trim();
+      if(!name||!email||!message){showToast('Please fill all required fields.');return;}
+      const body='Name: '+name+'\nEmail: '+email+'\n\nMessage:\n'+message;
+      window.location.href='mailto:admin@poojahoros.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+      showToast('Opening email app...');
+      e.target.reset();
+    }
+    function showToast(msg){
+      const toast=document.getElementById('toast');
+      toast.textContent=msg;
+      toast.style.transform='translateX(-50%) translateY(0)';
+      clearTimeout(toast._timer);
+      toast._timer=setTimeout(()=>toast.style.transform='translateX(-50%) translateY(120px)',2600);
+    }
+    document.addEventListener('DOMContentLoaded',()=>{buildGrid();updateDate();setInterval(updateDate,60000)});
+  </script>
+</body>
+</html>
